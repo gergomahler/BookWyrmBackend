@@ -13,6 +13,8 @@ namespace BookWyrmBackend.Models
         public string Password { get; set; }
         public DateTime RegisterDate { get; set; }
         public List<BookHoard> BookHoards { get; set; }
+        public List<Author> FavAuthors { get; set; }
+        public List<Publisher> FavPublishers { get; set; }
         public string AuthToken { get; set; }
 
         internal string GenerateAuthToken()
