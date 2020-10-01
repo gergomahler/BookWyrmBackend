@@ -17,5 +17,6 @@ namespace BookWyrmBackend.Models
         public string Publisher { get; set; }
         public DateTime PublishDate { get; set; }
         public List<string> BuyLinks { get; set; }
+        public List<Genre> Genres { get; set; }
     }
 }

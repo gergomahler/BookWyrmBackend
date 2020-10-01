@@ -15,6 +15,7 @@ namespace BookWyrmBackend.Models
         public List<BookHoard> BookHoards { get; set; }
         public List<Author> FavAuthors { get; set; }
         public List<Publisher> FavPublishers { get; set; }
+        public List<Genre> GenPrefs { get; set; }
         public string AuthToken { get; set; }
 
         internal string GenerateAuthToken()
