@@ -11,8 +11,14 @@ namespace BookWyrmBackend
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<BookWyrmBackend.Models.BookHoard> BookHoards { get; set; }
+        public DbSet<BookHoard> BookHoards { get; set; }
 
-        public DbSet<BookWyrmBackend.Models.Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
+
+        public DbSet<Publisher> Publishers { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite("Data Source=bookwyrm.db");
     }
 }
