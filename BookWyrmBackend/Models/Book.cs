@@ -18,7 +18,6 @@ namespace BookWyrmBackend.Models
         public DateTime PublishDate { get; set; }
         public List<string> BuyLinks { get; set; }
         public List<Genre> Genres { get; set; }
-        public int PublishDate { get; set; }
 
         public Book()
         {
