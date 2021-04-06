@@ -42,16 +42,12 @@ namespace BookWyrmBackend.Controllers
             return book;
         }
 
-        // PUT: api/Books/5
+        // PUT: api/Books/
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, Book book)
+        [HttpPut]
+        public async Task<IActionResult> PutBook(Book book)
         {
-            if (id != book.Id)
-            {
-                return BadRequest();
-            }
 
             _context.Entry(book).State = EntityState.Modified;
 
@@ -61,14 +57,6 @@ namespace BookWyrmBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
 
             return NoContent();
@@ -102,9 +90,5 @@ namespace BookWyrmBackend.Controllers
             return book;
         }
 
-        private bool BookExists(int id)
-        {
-            return _context.Books.Any(e => e.Id == id);
-        }
     }
 }
