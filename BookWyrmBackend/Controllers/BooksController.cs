@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookWyrmBackend;
 using BookWyrmBackend.Models;
+using Microsoft.AspNetCore.Cors;
+using BookWyrmBackend.DTOs;
+using Microsoft.Extensions.Logging;
 
 namespace BookWyrmBackend.Controllers
 {
@@ -15,10 +18,12 @@ namespace BookWyrmBackend.Controllers
     public class BooksController : ControllerBase
     {
         private readonly UserContext _context;
+        private readonly ILogger _logger;
 
-        public BooksController(UserContext context)
+        public BooksController(UserContext context, ILogger<BooksController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/Books
@@ -65,13 +70,17 @@ namespace BookWyrmBackend.Controllers
         // POST: api/Books
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [EnableCors]
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook(BookDTOObject book)
         {
-            _context.Books.Add(book);
-            await _context.SaveChangesAsync();
+           // _context.Books.Add(book);
+            //await _context.SaveChangesAsync();
+            _logger.LogInformation(book.ToString());
 
-            return CreatedAtAction("GetBook", new { id = book.Id }, book);
+
+
+            return CreatedAtAction("GetBook", new { id = 1 }, book);
         }
 
         // DELETE: api/Books/5

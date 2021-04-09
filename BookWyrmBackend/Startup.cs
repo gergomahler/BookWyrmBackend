@@ -27,11 +27,21 @@ namespace BookWyrmBackend
             services.AddControllersWithViews();
             services.AddDbContext<UserContext>(opt => opt.UseSqlite("Data Source=bookwyrm.db"));
             services.AddControllers();
+
+            services.AddCors(
+                options => options.AddDefaultPolicy(
+                    builder => builder
+                    .WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
